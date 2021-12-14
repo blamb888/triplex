@@ -34,6 +34,10 @@ int main()
     if ((GuessSum == CodeSum) && (GuessProduct == CodeProduct)) {
       std::cout << "The door opens and you may proceed..." << std::endl;
       std::cout << "Well done, wizard." << std::endl;
+    } else {
+      std::cout << "You fool!" << std::endl;
+      std::cout << "You have guessed...poorly" << std::endl;
+      std::cout << "You take 10 poison damage as noxious gas fills the room." << std::endl;
     }
 
     return 0;
