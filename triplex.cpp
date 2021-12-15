@@ -21,20 +21,22 @@ int main()
     std::cout << "+ The runes add up to: " << CodeSum << std::endl;
     std::cout << "+ The product of the runes is: " << CodeProduct << std::endl;
 
+    // Store Player gueess
     int GuessA, GuessB, GuessC;
-
-    std::cin >> GuessA;
-    std::cin >> GuessB;
-    std::cin >> GuessC;
-    std::cout << "You have etched: " << GuessA << GuessB << GuessC << std::endl;
+    std::cin >> GuessA >> GuessB >> GuessC;
 
     int GuessSum = GuessA + GuessB + GuessC;
     int GuessProduct = GuessA * GuessB * GuessC;
 
-    if ((GuessSum == CodeSum) && (GuessProduct == CodeProduct)) {
+    std::cout << "You have etched: " << GuessA << GuessB << GuessC << std::endl;
+
+    if ((GuessSum == CodeSum) && (GuessProduct == CodeProduct))
+    {
       std::cout << "The door opens and you may proceed..." << std::endl;
       std::cout << "Well done, wizard." << std::endl;
-    } else {
+    }
+    else
+    {
       std::cout << "You fool!" << std::endl;
       std::cout << "You have guessed...poorly" << std::endl;
       std::cout << "You take 10 poison damage as noxious gas fills the room." << std::endl;
