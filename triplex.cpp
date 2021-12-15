@@ -2,9 +2,35 @@
 
 void PrintIntro()
 {
+  std::string PlayerResponse;
   // Print intro message to terminal
-  std::cout << "You are an intrepid adventurer but this door isn't going to budge.\n";
-  std::cout << "You'll need to enter the right runes to continue...\n\n";
+  std::cout << R"(
+        _    .  ,   .           .
+    *  / \_ *  / \_      _  *        *   /\'__        *
+      /    \  /    \,   ((        .    _/  /  \  *'.
+ .   /\/\  /\/ :' __ \_  `          _^/  ^/    `--.
+    /    \/  \  _/  \-'\      *    /.' ^_   \_   .'\  *
+  /\  .-   `. \/     \ /==~=-=~=-=-;.  _/ \ -. `_/   \
+ /  `-.__ ^   / .-'.--\ =-=~_=-=~=^/  _ `--./ .-'  `-
+/     `.  / /       `.~-^=-=~=^=.-'      '-._ `._
+You have come accross a cave in the mountains during your travels...
+)" << '\n';
+  std::cout << "Do you enter the cave? y/n\n";
+  std::cin >> PlayerResponse;
+  if (PlayerResponse == "y")
+  {
+    std::cout << "You bravely enter the cave. You travel deep and come across a door.\n";
+    std::cout << "You are an intrepid adventurer but this door isn't going to budge.\n";
+    std::cout << "You'll need to enter the right runes to continue...\n\n";
+
+  }
+  else
+  {
+    std::cout << "You decide it wiser to continue your journey under the light of the stars.\n";
+    std::cout << "You will never know what treasure might have been hidden within.\n";
+    std::cout << "You grow to a ripe old age with the thought haunting you.\n";
+    std::cout << "It drives you mad and you leave this mortal coil all the more miserable for it.\n";
+  }
 }
 
 void PlayGame()
