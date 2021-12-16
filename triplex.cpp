@@ -1,9 +1,10 @@
 #include <iostream>
 
-void PrintIntro()
+void PrintIntro(int Difficulty)
 {
   std::string PlayerResponse;
   // Print intro message to terminal
+  std::cout << "\n\n";
   std::cout << R"(
         _    .  ,   .           .
     *  / \_ *  / \_      _  *        *   /\'__        *
@@ -15,27 +16,27 @@ void PrintIntro()
 /     `.  / /       `.~-^=-=~=^=.-'      '-._ `._
 You have come accross a cave in the mountains during your travels...
 )" << '\n';
-  std::cout << "Do you enter the cave? y/n\n";
-  std::cin >> PlayerResponse;
-  if (PlayerResponse == "y")
-  {
+  // std::cout << "Do you enter the cave? y/n\n";
+  // std::cin >> PlayerResponse;
+  // if (PlayerResponse == "y")
+  // {
     std::cout << "You bravely enter the cave. You travel deep and come across a door.\n";
     std::cout << "You are an intrepid adventurer but this door isn't going to budge.\n";
+    std::cout << "There seems to be a level " << Difficulty << " enchantment sealing it.\n";
     std::cout << "You'll need to enter the right runes to continue...\n\n";
 
-  }
-  else
-  {
-    std::cout << "You decide it wiser to continue your journey under the light of the stars.\n";
-    std::cout << "You will never know what treasure might have been hidden within.\n";
-    std::cout << "You grow to a ripe old age with the thought haunting you.\n";
-    std::cout << "It drives you mad and you leave this mortal coil all the more miserable for it.\n";
-  }
+  // else
+  // {
+  //   std::cout << "You decide it wiser to continue your journey under the light of the stars.\n";
+  //   std::cout << "You will never know what treasure might have been hidden within.\n";
+  //   std::cout << "You grow to a ripe old age with the thought haunting you.\n";
+  //   std::cout << "It drives you mad and you leave this mortal coil all the more miserable for it.\n";
+  // }
 }
 
-void PlayGame()
+bool PlayGame(int Difficulty)
 {
-  PrintIntro();
+  PrintIntro(Difficulty);
   // Declare 3 number code
   const int CodeA = 4;
   const int CodeB = 3;
@@ -66,17 +67,31 @@ void PlayGame()
   {
     std::cout << "\n🗝️ The door opens and you may proceed...🗝️\n";
     std::cout << "\n🧙‍♂️ Well done, wizard.🧙‍♂️\n";
+    return true;
   }
   else
   {
     std::cout << "\nYou fool!";
     std::cout << "\nYou have guessed...poorly\n";
     std::cout << "\n☠️  🤢 You take 10 poison damage as noxious gas fills the room.🤢 ☠️\n";
+    return false;
   }
 }
 
 int main()
 {
-    PlayGame();
+  int LevelDifficulty = 1;
+  while (true)
+  {
+      bool bLevelComplete = PlayGame(LevelDifficulty);
+      std::cin.clear(); // Clears any errors
+      std::cin.ignore(); // Discards the buffer
+
+      if (bLevelComplete)
+      {
+          ++LevelDifficulty;
+      }
+
+  }
     return 0;
 }
