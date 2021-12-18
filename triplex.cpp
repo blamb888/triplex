@@ -1,8 +1,100 @@
 #include <iostream>
 
-void PrintIntro(int Difficulty)
+void PrintFailureMessage (int Difficulty)
 {
-  if (Difficulty <= 1)
+  std::cout << "\n"
+            << R"(
+                          _
+                  (`  ).                   _
+                (     ).              .:(`  )`.
+    )           _(       '`.          :(   .    )
+            .=(`(      .   )     .--  `.  (    ) )
+          ((    (..__.:'-'   .+(   )   ` _`  ) )
+    `.     `(       ) )       (   .  )     (   )  ._
+      )      ` __.:'   )     (   (   ))     `-'.-(`  )
+    )  )  ( )       --'       `- __.'         :(      ))
+    .-'  (_.'          .')                    `(    )  ))
+                      (_  )                     ` __.:'
+
+    --..,___.--,--'`,---..-.--+--.,,-,,..._.--..-._.-a:f--.
+        )"
+  << "\n";
+  std::cout << "\n\n";
+  std::cout << R"(
+              ______
+      ,-' ;  ! `-.
+    / :  !  :  . \
+    |_ ;   __:  ;  |
+    )| .  :)(.  !  |
+    |"    (##)  _  |
+    |  :  ;`'  (_) (
+    |  :  :  .     |
+    )_ !  ,  ;  ;  |
+    || .  .  :  :  |
+    |" .  |  :  .  |
+    |mt-2_;----.___|
+      )"
+            << "\n";
+  std::cout << "\nYou steady yourself as the effects of the poison subside.\n";
+  std::cout << "The door with the level " << Difficulty << " enchantment sealing it still blocks the way.\n";
+  std::cout << "You'll need to enter the right runes to continue...\n\n";
+}
+
+void PrintSuccessMessage(int Difficulty)
+{
+  std::cout << "\n\n";
+  std::cout << R"(
+              ______
+      ,-' ;  ! `-.
+    / :  !  :  . \
+    |_ ;   __:  ;  |
+    )| .  :)(.  !  |
+    |"    (##)  _  |
+    |  :  ;`'  (_) (
+    |  :  :  .     |
+    )_ !  ,  ;  ;  |
+    || .  .  :  :  |
+    |" .  |  :  .  |
+    |mt-2_;----.___|
+      )"
+            << "\n";
+  std::cout << "\nYou travel deeper into the cave and come upon another enchanted door.\n";
+  std::cout << "There seems to be a level " << Difficulty << " enchantment sealing it.\n";
+  std::cout << "You'll need to enter the right runes to continue...\n\n";
+}
+
+void PrintWinningMessage()
+{
+  std::cout << "\nCongratulations! You delved deep and faced many dangers."
+            << "\nBut at last, you've come upon some treasure!\n"
+            << R"(
+    *******************************************************************************
+             |                   |                  |                     |
+    _________|________________.=""_;=.______________|_____________________|_______
+    |                   |  ,-"_,=""     `"=.|                  |
+    |___________________|__"=._o`"-._        `"=.______________|___________________
+              |                `"=._o`"=._      _`"=._                     |
+    _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+    |                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
+    |___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+              |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+    _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
+    |                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
+    |___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+    ____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+    /______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+    ____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+    /______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+    ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+    /______/______/______/______/______/______/______/______/______/______/[TomekK]
+    *******************************************************************************
+        )"
+  << "\n Good luck on the rest of your journey adventurer!";
+}
+
+void PrintIntro(int Difficulty, int Failures)
+{
+  if (Difficulty <= 1 && Failures == 0)
   {
     std::string PlayerResponse;
     // Print intro message to terminal
@@ -27,37 +119,15 @@ void PrintIntro(int Difficulty)
     std::cout << "There seems to be a level " << Difficulty << " enchantment sealing it.\n";
     std::cout << "You'll need to enter the right runes to continue...\n\n";
   }
-  else
-  {
-    std::cout << "\n\n";
-    std::cout << R"(
-              ______
-      ,-' ;  ! `-.
-    / :  !  :  . \
-    |_ ;   __:  ;  |
-    )| .  :)(.  !  |
-    |"    (##)  _  |
-    |  :  ;`'  (_) (
-    |  :  :  .     |
-    )_ !  ,  ;  ;  |
-    || .  .  :  :  |
-    |" .  |  :  .  |
-    |mt-2_;----.___|
-      )" << "\n";
-    std::cout << "\nYou travel deeper into the cave and come upon another enchanted door.\n";
-    std::cout << "There seems to be a level " << Difficulty << " enchantment sealing it.\n";
-    std::cout << "You'll need to enter the right runes to continue...\n\n";
-
     // std::cout << "You decide it wiser to continue your journey under the light of the stars.\n";
     // std::cout << "You will never know what treasure might have been hidden within.\n";
     // std::cout << "You grow to a ripe old age with the thought haunting you.\n";
     // std::cout << "It drives you mad and you leave this mortal coil all the more miserable for it.\n";
-  }
 }
 
-bool PlayGame(int Difficulty)
+bool PlayGame(int Difficulty, int Failures)
 {
-  PrintIntro(Difficulty);
+  PrintIntro(Difficulty, Failures);
   // Declare 3 number code
   const int CodeA = 4;
   const int CodeB = 3;
@@ -102,43 +172,30 @@ bool PlayGame(int Difficulty)
 int main()
 {
   int LevelDifficulty = 1;
+  int LevelFailures = 0;
   int const MaxDifficulty = 5;
 
   while (LevelDifficulty <= MaxDifficulty) // Loop until all levels are completed
   {
-      bool bLevelComplete = PlayGame(LevelDifficulty);
+      bool bLevelComplete = PlayGame(LevelDifficulty, LevelFailures);
       std::cin.clear(); // Clears any errors
       std::cin.ignore(); // Discards the buffer
 
       if (bLevelComplete)
       {
           ++LevelDifficulty;
+          if (LevelDifficulty <= MaxDifficulty)
+          {
+            PrintSuccessMessage(LevelDifficulty);
+          }
+      }
+      if (!bLevelComplete)
+      {
+          ++LevelFailures;
+          PrintFailureMessage(LevelDifficulty);
       }
 
   }
-
-    std::cout<< "\nCongratulations! You delved deep and faced many dangers." <<
-    "\nBut at last, you've come upon some treasure!\n" << R"(
-    *******************************************************************************
-             |                   |                  |                     |
-    _________|________________.=""_;=.______________|_____________________|_______
-    |                   |  ,-"_,=""     `"=.|                  |
-    |___________________|__"=._o`"-._        `"=.______________|___________________
-              |                `"=._o`"=._      _`"=._                     |
-    _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
-    |                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
-    |___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
-              |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
-    _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
-    |                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
-    |___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
-    ____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
-    /______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
-    ____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
-    /______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
-    ____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
-    /______/______/______/______/______/______/______/______/______/______/[TomekK]
-    *******************************************************************************
-        )" << "\n Good luck on the rest of your journey adventurer!";
+    PrintWinningMessage();
     return 0;
 }
