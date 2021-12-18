@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 
 void PrintFailureMessage (int Difficulty)
 {
@@ -129,9 +130,9 @@ bool PlayGame(int Difficulty, int Failures)
 {
   PrintIntro(Difficulty, Failures);
   // Declare 3 number code
-  const int CodeA = rand() % Difficulty + 1;
-  const int CodeB = rand() % Difficulty + 1;
-  const int CodeC = rand() % Difficulty + 1;
+  const int CodeA = rand() % Difficulty + Difficulty;
+  const int CodeB = rand() % Difficulty + Difficulty;
+  const int CodeC = rand() % Difficulty + Difficulty;
 
   const int CodeSum = CodeA + CodeB + CodeC;
   const int CodeProduct = CodeA * CodeB * CodeC;
@@ -171,6 +172,8 @@ bool PlayGame(int Difficulty, int Failures)
 
 int main()
 {
+  srand(time(NULL)); // Create new random time based on time of day
+
   int LevelDifficulty = 1;
   int LevelFailures = 0;
   int const MaxDifficulty = 5;
