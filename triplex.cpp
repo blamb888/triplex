@@ -2,36 +2,57 @@
 
 void PrintIntro(int Difficulty)
 {
-  std::string PlayerResponse;
-  // Print intro message to terminal
-  std::cout << "\n\n";
-  std::cout << R"(
-        _    .  ,   .           .
-    *  / \_ *  / \_      _  *        *   /\'__        *
-      /    \  /    \,   ((        .    _/  /  \  *'.
- .   /\/\  /\/ :' __ \_  `          _^/  ^/    `--.
-    /    \/  \  _/  \-'\      *    /.' ^_   \_   .'\  *
-  /\  .-   `. \/     \ /==~=-=~=-=-;.  _/ \ -. `_/   \
- /  `-.__ ^   / .-'.--\ =-=~_=-=~=^/  _ `--./ .-'  `-
-/     `.  / /       `.~-^=-=~=^=.-'      '-._ `._
-You have come accross a cave in the mountains during your travels...
-)" << '\n';
-  // std::cout << "Do you enter the cave? y/n\n";
-  // std::cin >> PlayerResponse;
-  // if (PlayerResponse == "y")
-  // {
+  if (Difficulty <= 1)
+  {
+    std::string PlayerResponse;
+    // Print intro message to terminal
+    std::cout << "\n\n";
+    std::cout << R"(
+            _    .  ,   .           .
+        *  / \_ *  / \_      _  *        *   /\'__        *
+          /    \  /    \,   ((        .    _/  /  \  *'.
+    .   /\/\  /\/ :' __ \_  `          _^/  ^/    `--.
+        /    \/  \  _/  \-'\      *    /.' ^_   \_   .'\  *
+      /\  .-   `. \/     \ /==~=-=~=-=-;.  _/ \ -. `_/   \
+    /  `-.__ ^   / .-'.--\ =-=~_=-=~=^/  _ `--./ .-'  `-
+    /     `.  / /       `.~-^=-=~=^=.-'      '-._ `._
+    You have come accross a cave in the mountains during your travels...
+    )" << '\n';
+    // std::cout << "Do you enter the cave? y/n\n";
+    // std::cin >> PlayerResponse;
+    // if (PlayerResponse == "y")
+    // {
     std::cout << "You bravely enter the cave. You travel deep and come across a door.\n";
     std::cout << "You are an intrepid adventurer but this door isn't going to budge.\n";
     std::cout << "There seems to be a level " << Difficulty << " enchantment sealing it.\n";
     std::cout << "You'll need to enter the right runes to continue...\n\n";
+  }
+  else
+  {
+    std::cout << "\n\n";
+    std::cout << R"(
+              ______
+      ,-' ;  ! `-.
+    / :  !  :  . \
+    |_ ;   __:  ;  |
+    )| .  :)(.  !  |
+    |"    (##)  _  |
+    |  :  ;`'  (_) (
+    |  :  :  .     |
+    )_ !  ,  ;  ;  |
+    || .  .  :  :  |
+    |" .  |  :  .  |
+    |_____;----.___|
+      )" << "\n";
+    std::cout << "\nYou travel deeper into the cave and come upon another enchanted door.\n";
+    std::cout << "There seems to be a level " << Difficulty << " enchantment sealing it.\n";
+    std::cout << "You'll need to enter the right runes to continue...\n\n";
 
-  // else
-  // {
-  //   std::cout << "You decide it wiser to continue your journey under the light of the stars.\n";
-  //   std::cout << "You will never know what treasure might have been hidden within.\n";
-  //   std::cout << "You grow to a ripe old age with the thought haunting you.\n";
-  //   std::cout << "It drives you mad and you leave this mortal coil all the more miserable for it.\n";
-  // }
+    // std::cout << "You decide it wiser to continue your journey under the light of the stars.\n";
+    // std::cout << "You will never know what treasure might have been hidden within.\n";
+    // std::cout << "You grow to a ripe old age with the thought haunting you.\n";
+    // std::cout << "It drives you mad and you leave this mortal coil all the more miserable for it.\n";
+  }
 }
 
 bool PlayGame(int Difficulty)
@@ -81,7 +102,9 @@ bool PlayGame(int Difficulty)
 int main()
 {
   int LevelDifficulty = 1;
-  while (true)
+  int const MaxDifficulty = 5;
+
+  while (LevelDifficulty <= MaxDifficulty) // Loop until all levels are completed
   {
       bool bLevelComplete = PlayGame(LevelDifficulty);
       std::cin.clear(); // Clears any errors
