@@ -164,7 +164,7 @@ bool PlayGame(int Difficulty, int Failures)
   else
   {
     std::cout << "\nYou fool!";
-    std::cout << "\nYou have guessed...poorly\n";
+    std::cout << "\nYou have guessed...poorly...\n";
     std::cout << "\n☠️  🤢 You take 10 poison damage as noxious gas fills the room.🤢 ☠️\n";
     return false;
   }
